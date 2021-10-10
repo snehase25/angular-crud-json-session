@@ -9,17 +9,18 @@ import { Router } from '@angular/router';
 export class ListComponent implements OnInit {
   // membersMock is a object array used for storing members details in json 
   public membersMock: any[] = [];
+  private readonly lastPage = sessionStorage.getItem('page'); // get last page name from session
+  displayMessage: string = "";
 
   constructor(private router: Router) { }
 
   //#region component hooks
   ngOnInit(): void {
-
     // Initialize members object data by prefilling with static data or session storage
     this.generateMembersMock();
 
     // Check for post add or edit functionality call then add or edit the member to membersmock
-    if (history.state.navigationId != 1) {
+    if (this.lastPage == 'add' || this.lastPage == 'edit') {
       this.addEditMember();
     }
 
@@ -56,25 +57,32 @@ export class ListComponent implements OnInit {
   addEditMember() {
     // Get Member details from Add or Edit page and store in memberInfo variable
     let memberInfo = history.state;
-    // Check if call is from "edit" by checking index field
-    if (memberInfo.index !== undefined && memberInfo.index != null) // Edit Member
-    {
-      this.membersMock.forEach(function (element, index) {
-        // Check and Find the element to "update" the Member
-        if (index == memberInfo.index) {
-          element.firstname = memberInfo.member.firstname;
-          element.lastname = memberInfo.member.lastname;
-          element.salary = memberInfo.member.salary;
-        }
-      });
-    }
-
-    // Check if call is from "add" by checkung index field
-    else
-      if (memberInfo.index === undefined && memberInfo.firstname !== undefined) // Add Member
-      {
+    // Add Member
+    if (this.lastPage == "add") {
+      try {
         this.membersMock.push(memberInfo);
+        // Display message on page
+        this.displayMessage = "Member added successfully!"
       }
+      catch (e) { console.log(e); }
+    }
+    // Edit Member
+    if (this.lastPage == "edit") {
+      try {
+        this.membersMock.forEach(function (element, index) {
+
+          // Check and Find the element to "update" the Member
+          if (index == memberInfo.index) {
+            element.firstname = memberInfo.member.firstname;
+            element.lastname = memberInfo.member.lastname;
+            element.salary = memberInfo.member.salary;
+          }
+        });
+        // Display message on page
+        this.displayMessage = "Member updated successfully!"
+      }
+      catch (e) { console.log(e); }
+    }
 
     // Update membermock object data in a session storage
     this.setMembersMockToSession(this.membersMock);
@@ -93,14 +101,19 @@ export class ListComponent implements OnInit {
   // "Delete" button click
   deleteMember(member: any) {
     if (confirm('Are you sure to delete ?')) {
-      this.membersMock.forEach((element, index) => {
-        // find the element to be deleted
-        if (element === member) {
-          this.membersMock.splice(index, 1);
-          // Update membermock object data in a session storage
-          this.setMembersMockToSession(this.membersMock);
-        }
-      })
+      try {
+        this.membersMock.forEach((element, index) => {
+          // find the element to be deleted
+          if (element === member) {
+            this.membersMock.splice(index, 1);
+            // Update membermock object data in a session storage
+            this.setMembersMockToSession(this.membersMock);
+          }
+        });
+        // Display message on page
+        this.displayMessage = "Member deleted successfully!"
+      }
+      catch (e) { console.log(e); }
     }
   }
   //#endregion

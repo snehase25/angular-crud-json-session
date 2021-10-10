@@ -11,6 +11,9 @@ export class DetailComponent implements OnInit {
   constructor(private location: Location) { }
 
   ngOnInit(): void {
+    // Set the page name in session storage
+    sessionStorage.setItem('page','detail');
+
     // Set the member details sent from list component via state
     this.member = history.state;
   }

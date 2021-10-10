@@ -12,6 +12,9 @@ export class AddComponent implements OnInit {
   constructor(private router: Router, private location: Location) { }
 
   ngOnInit(): void {
+    // Set the page name in session storage
+    sessionStorage.setItem('page','add');
+    
     // Set the member details sent from list component via state
     this.member = history.state;
   }

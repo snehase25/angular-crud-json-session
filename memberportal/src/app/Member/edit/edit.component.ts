@@ -12,6 +12,9 @@ export class EditComponent implements OnInit {
   constructor(private location: Location, private router: Router) { }
 
   ngOnInit(): void {
+    // Set the page name in session storage
+    sessionStorage.setItem('page','edit');
+
     // Set the member details sent from list component via state
     this.memberInfo = history.state;
   }
