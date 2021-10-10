@@ -8,13 +8,22 @@ import { Router } from '@angular/router';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-
-  constructor(private router:Router, private location:Location) { }
+  member: any;
+  constructor(private router: Router, private location: Location) { }
 
   ngOnInit(): void {
+    // Set the member details sent from list component via state
+    this.member = history.state;
   }
-  
-  goBack(){
+
+  // "Save" button click
+  addMember() {
+    // Navigate to list component to add the member in json members array
+    this.router.navigateByUrl('/list', { state: this.member });
+  }
+
+  // "Back" button click
+  goBack() {
     this.location.back();
   }
 }

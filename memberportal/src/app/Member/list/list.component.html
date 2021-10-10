@@ -1,5 +1,5 @@
 <h1>Member List :</h1>
-<button type="button" (click)="addmember();">Add Member</button>
+<button type="button" (click)="addMember();">Add Member</button>
 <br><br>
 <table>
     <tr>
@@ -10,20 +10,12 @@
         <th>Delete</th>
         <th>Detail</th>
     </tr>
-    <tr>
-        <td>Shailja</td>
-        <td>Daksh</td>
-        <td>1cr</td>
-        <td><a routerLink="/edit">Edit</a></td>
-        <td><a href="#" (click)="delete();">Delete</a></td>
-        <td><a routerLink="/detail">Detail</a></td>
-    </tr>
-    <tr>
-        <td>Shiv</td>
-        <td>Shankar</td>
-        <td>2cr</td>
-        <td><a routerLink="/edit">Edit</a></td>
-        <td><a href="#" (click)="delete();">Delete</a></td>
-        <td><a routerLink="/detail">Detail</a></td>
+    <tr *ngFor="let member of membersMock;let indexOfElement = index;">
+        <td>{{member.firstname}}</td>
+        <td>{{member.lastname}}</td>
+        <td>{{member.salary}}</td>
+        <td><a routerLink="/edit" [state]="{member:member,index:indexOfElement}">Edit</a></td>
+        <td><a href="#" (click)="deleteMember(member);">Delete</a></td>
+        <td><a routerLink="/detail" [state]=member>Detail</a></td>
     </tr>
 </table>

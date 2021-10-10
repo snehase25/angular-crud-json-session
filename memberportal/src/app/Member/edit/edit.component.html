@@ -1,9 +1,9 @@
 <h1>Edit Member :</h1>
 <label>First Name :</label>
-<input type="text" value="Shailaja" /><br>
+<input type="text" [(ngModel)]="memberInfo.member.firstname" /><br>
 <label>Last Name :</label>
-<input type="text" value="Daksh" /><br>
+<input type="text" [(ngModel)]="memberInfo.member.lastname" /><br>
 <label>Salary :</label>
-<input type="text" value="1 Cr"  /><br><br>
-<button type="button">Save</button>
+<input type="text" [(ngModel)]="memberInfo.member.salary" /><br><br>
+<button type="button" (click)="updateMember();">Save</button>
 <button type="button" (click)="goBack();">Cancel</button>
