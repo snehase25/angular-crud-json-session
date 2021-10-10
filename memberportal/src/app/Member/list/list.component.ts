@@ -25,10 +25,6 @@ export class ListComponent implements OnInit {
 
   }
 
-  // Removes all sessions 
-  ngOnDestroy() {
-    sessionStorage.removeItem('membersMock');
-  }
   //#endregion
 
   //#region list component functions
