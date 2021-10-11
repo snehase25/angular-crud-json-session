@@ -1,5 +1,5 @@
 # memberportalangularbasicjson
-Member portal CRUD in Angular (Basic static)
+Member portal CRUD in Angular (Basic JSON object array)
 
 - A startup project for Angular newbies.
 - It uses Angular framework.
