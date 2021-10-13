@@ -6,11 +6,11 @@ import { EditComponent } from './member/edit/edit.component';
 import { ListComponent } from './member/list/list.component';
 
 const routes: Routes = [
-  {path:'', redirectTo: '/list', pathMatch:'full'},
-  {path:'list', component: ListComponent},
-  {path:'add', component: AddComponent},
-  {path:'edit', component: EditComponent},
-  {path:'detail', component: DetailComponent}
+  { path: '', redirectTo: '/list', pathMatch: 'full' },
+  { path: 'list', component: ListComponent },
+  { path: 'add', component: AddComponent },
+  { path: 'edit', component: EditComponent },
+  { path: 'detail', component: DetailComponent }
 ];
 
 @NgModule({

@@ -19,7 +19,7 @@ export class EditComponent implements OnInit {
   // "Save" button click
   updateMember() {
     // Set the page name in session storage
-    sessionStorage.setItem('page','edit');
+    sessionStorage.setItem('page', 'edit');
     // Navigate to list component to update the member in json members array
     this.router.navigateByUrl('/list', { state: this.memberInfo });
   }
@@ -27,7 +27,7 @@ export class EditComponent implements OnInit {
   // "Back" button click
   goBack() {
     // Set the page name in session storage
-    sessionStorage.setItem('page','');
+    sessionStorage.setItem('page', '');
     this.location.back();
   }
 }
