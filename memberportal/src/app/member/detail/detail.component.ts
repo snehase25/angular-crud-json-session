@@ -7,7 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail.component.css'],
 })
 export class DetailComponent implements OnInit {
-  member: any;
+  public member: any;
+
   constructor(private location: Location) { }
 
   ngOnInit(): void {
@@ -18,6 +19,7 @@ export class DetailComponent implements OnInit {
     this.member = history.state;
   }
 
+  // "Back" button click
   goBack() {
     this.location.back();
   }

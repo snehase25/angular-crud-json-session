@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit.component.css']
 })
 export class EditComponent implements OnInit {
-  memberInfo: any;
+  public memberInfo: any;
+  
   constructor(private location: Location, private router: Router) { }
 
   ngOnInit(): void {

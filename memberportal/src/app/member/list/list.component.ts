@@ -7,14 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  // membersMock is a object array used for storing members details in json 
-  public membersMock: any[] = [];
+  public membersMock: any[] = []; // membersMock is a object array used for storing members details in json 
+  public displayMessage: string = ""; // Success messages 
   private readonly lastPage = sessionStorage.getItem('page'); // get last page name from session
-  displayMessage: string = "";
 
   constructor(private router: Router) { }
 
-  //#region component hooks
   ngOnInit(): void {
     // Initialize members object data by prefilling with static data or session storage
     this.generateMembersMock();
@@ -26,18 +24,38 @@ export class ListComponent implements OnInit {
 
   }
 
-  //#endregion
+  // "Add Member" button click
+  addMember() {
+    this.router.navigate(['/add']); //OR this.router.navigateByUrl('/add');
+  }
 
-  //#region list component functions
+  // "Delete" button click
+  deleteMember(member: any) {
+    if (confirm('Are you sure to delete ?')) {
+      try {
+        this.membersMock.forEach((element, index) => {
+          // find the element to be deleted
+          if (element === member) {
+            this.membersMock.splice(index, 1);
+            // Update membermock object data in a session storage
+            this.setMembersMockToSession(this.membersMock);
+          }
+        });
+        // Display message on page
+        this.displayMessage = "Member deleted successfully!"
+      }
+      catch (e) { console.log(e); }
+    }
+  }
 
   // Initialize membersmock object from mockdata or saved session
-  generateMembersMock() {
+  private generateMembersMock() {
     let membersMockSession = sessionStorage.getItem('membersMock');
     this.membersMock = (membersMockSession != null && membersMockSession.length > 0) ? JSON.parse(membersMockSession) : this.getMembersMock();
   }
 
   // Returns the members json object array which is initialized on first time component load
-  getMembersMock() {
+  private getMembersMock() {
     let membersMockObject: any[] = [
       { firstname: 'Shailja', lastname: 'Daksha', salary: '1Cr' },
       { firstname: 'Shiv', lastname: 'Shankar', salary: '2Cr' }
@@ -48,13 +66,12 @@ export class ListComponent implements OnInit {
   }
 
   // Method stores membersmock object in a session storage
-  // Parameter membersMock is an object array
-  setMembersMockToSession(membersMock: any) {
+  private setMembersMockToSession(membersMock: any) {
     sessionStorage.setItem('membersMock', JSON.stringify(membersMock));
   }
 
   // Add or Edit Member component calls 
-  addEditMember() {
+  private addEditMember() {
     // Get Member details from Add or Edit page and store in memberInfo variable
     let memberInfo = history.state;
     // Add Member
@@ -88,33 +105,4 @@ export class ListComponent implements OnInit {
     this.setMembersMockToSession(this.membersMock);
 
   }
-
-  //#endregion
-
-  //#region 'click' events
-  // "Add Member" button click
-  addMember() {
-    this.router.navigate(['/add']); //OR this.router.navigateByUrl('/add');
-  }
-
-  // "Delete" button click
-  deleteMember(member: any) {
-    if (confirm('Are you sure to delete ?')) {
-      try {
-        this.membersMock.forEach((element, index) => {
-          // find the element to be deleted
-          if (element === member) {
-            this.membersMock.splice(index, 1);
-            // Update membermock object data in a session storage
-            this.setMembersMockToSession(this.membersMock);
-          }
-        });
-        // Display message on page
-        this.displayMessage = "Member deleted successfully!"
-      }
-      catch (e) { console.log(e); }
-    }
-  }
-  //#endregion
-
 }

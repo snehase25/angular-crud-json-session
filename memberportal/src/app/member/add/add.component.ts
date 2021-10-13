@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-  member: any = {};
+  public member: any = {};
+
   constructor(private router: Router, private location: Location) { }
 
   ngOnInit(): void {
