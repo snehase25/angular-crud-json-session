@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class EditComponent implements OnInit {
   public memberInfo: any;
-  
+
   constructor(private location: Location, private router: Router) { }
 
   ngOnInit(): void {
@@ -18,7 +18,7 @@ export class EditComponent implements OnInit {
   }
 
   // "Save" button click
-  updateMember() {
+  public updateMember(): void {
     // Set the page name in session storage
     sessionStorage.setItem('page', 'edit');
     // Navigate to list component to update the member in json members array
@@ -26,7 +26,7 @@ export class EditComponent implements OnInit {
   }
 
   // "Back" button click
-  goBack() {
+  public goBack(): void {
     // Set the page name in session storage
     sessionStorage.setItem('page', '');
     this.location.back();

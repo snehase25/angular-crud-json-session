@@ -25,12 +25,12 @@ export class ListComponent implements OnInit {
   }
 
   // "Add Member" button click
-  addMember() {
+  public addMember(): void {
     this.router.navigate(['/add']); //OR this.router.navigateByUrl('/add');
   }
 
   // "Delete" button click
-  deleteMember(member: any) {
+  public deleteMember(member: any): void {
     if (confirm('Are you sure to delete ?')) {
       try {
         this.membersMock.forEach((element, index) => {
@@ -49,13 +49,13 @@ export class ListComponent implements OnInit {
   }
 
   // Initialize membersmock object from mockdata or saved session
-  private generateMembersMock() {
+  private generateMembersMock(): void {
     let membersMockSession = sessionStorage.getItem('membersMock');
     this.membersMock = (membersMockSession != null && membersMockSession.length > 0) ? JSON.parse(membersMockSession) : this.getMembersMock();
   }
 
   // Returns the members json object array which is initialized on first time component load
-  private getMembersMock() {
+  private getMembersMock(): any {
     let membersMockObject: any[] = [
       { firstname: 'Shailja', lastname: 'Daksha', salary: '1Cr' },
       { firstname: 'Shiv', lastname: 'Shankar', salary: '2Cr' }
@@ -66,12 +66,12 @@ export class ListComponent implements OnInit {
   }
 
   // Method stores membersmock object in a session storage
-  private setMembersMockToSession(membersMock: any) {
+  private setMembersMockToSession(membersMock: any): void {
     sessionStorage.setItem('membersMock', JSON.stringify(membersMock));
   }
 
   // Add or Edit Member component calls 
-  private addEditMember() {
+  private addEditMember(): void {
     // Get Member details from Add or Edit page and store in memberInfo variable
     let memberInfo = history.state;
     // Add Member

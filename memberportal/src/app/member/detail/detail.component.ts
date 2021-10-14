@@ -20,7 +20,7 @@ export class DetailComponent implements OnInit {
   }
 
   // "Back" button click
-  goBack() {
+  public goBack(): void {
     this.location.back();
   }
 }

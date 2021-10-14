@@ -17,7 +17,7 @@ export class AddComponent implements OnInit {
   }
 
   // "Save" button click
-  addMember() {
+  public addMember(): void {
     // Set the page name in session storage
     sessionStorage.setItem('page', 'add');
     // Navigate to list component to add the member in json members array
@@ -25,7 +25,7 @@ export class AddComponent implements OnInit {
   }
 
   // "Back" button click
-  goBack() {
+  public goBack(): void {
     // Set the page name in session storage
     sessionStorage.setItem('page', '');
     this.location.back();
