@@ -1,4 +1,5 @@
-# memberportalangularbasicjson
+# Angular CRUD demo using json object + session 
+
 Member portal CRUD in Angular (Basic JSON object array)
 
 - A startup project for Angular newbies.
