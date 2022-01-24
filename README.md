@@ -2,8 +2,11 @@
 Member portal CRUD in Angular (Basic JSON object array)
 
 - A startup project for Angular newbies.
-- It uses Angular framework.
-- It is the most basic dynamic app made with no css, no dynamic data and no advance concepts.
-- Has the JSON object array storing a mock data of members to accomplish add, edit, delete and view members.
-- Has the navigations implemented using Angular routing.
-- Uses history.state and session storage to pass object as parameter and storing updated object respectively.
+- Angular framework v12, css and HTML.
+- JSON object array storing a mock(static) data of members to accomplish add, edit, delete and view members.
+- A basic dynamic app made without css or dynamic data so as to focus on Angular part alone. 
+  You may check my other repositories incase you required better UI aswell-
+  **Angular CRUD with Bootstrap - https://github.com/snehase25/angular-crud-json-service-bootstrap
+  **Angulat CRUD with ngBootstrap - https://github.com/snehase25/angular-crud-json-service-ng-bootstrap****
+- Angular routing.
+- Used history.state and session storage to pass object as parameter and storing updated object respectively.
